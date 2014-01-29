@@ -19,8 +19,6 @@ yamzamApp.config(['$routeProvider',
     function($routeProvider) {
         $routeProvider.
             when('/', {templateUrl: '/partials/front.html', controller: 'yamzamCtrl'}).
-            //when('/gallery', {templateUrl: '/partials/gallery.html', controller: 'yamzamCtrl'}).
-            //when('/study', {templateUrl: '/partials/study.html', controller: 'yamzamCtrl'}).
             when('/profile', {templateUrl: '/partials/profile.html', controller: 'yamzamCtrl'}).
             otherwise({redirectTo: '/'});
     }

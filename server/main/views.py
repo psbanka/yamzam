@@ -3,8 +3,6 @@ from django.http import HttpResponseRedirect, HttpResponse
 import json
 #from django.http import Http404
 #from django.shortcuts import get_object_or_404
-from django.shortcuts import render
-from contact import ContactForm
 from django.shortcuts import render_to_response
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
@@ -109,24 +107,3 @@ def logout_view(request):
     """
     logout(request)
     return HttpResponseRedirect('/')
-
-
-def contact(request):
-    if request.method == 'POST':  # If the form has been submitted...
-        logger.info("codePOST condition")
-        form = ContactForm(request.POST)  # A form bound to the POST data
-        if form.is_valid():  # All validation rules pass
-            # Process the data in form.cleaned_data
-            # ...
-            return HttpResponseRedirect('/polls/thanks/')
-    else:
-        logger.info("GET condition")
-        form = ContactForm()  # An unbound form
-
-    return render(request, 'contact.html', {
-        'form': form,
-    })
-
-
-def thanks(request):
-    return HttpResponse("Thanks.")
