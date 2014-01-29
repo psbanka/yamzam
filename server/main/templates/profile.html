@@ -1,0 +1,84 @@
+<div class="container">
+    <h1>
+        TOKEN
+                {{ csrf_token }}
+    <h1/>
+    <div class="row">
+        <div class="well span10">
+            <div class="page-header">
+                <H1>Edit profile
+                    <small>for {[{ currentUser.username }]}</small>
+                </H1>
+            </div>
+        </div>
+    </div>
+    <div class="span12">
+        <form class="form-horizontal">
+            <fieldset>
+                <h3>Personal info</h3>
+                <div class="control-group">
+                    <label class="control-label" for="inputEmail">Email</label>
+
+                    <div class="controls">
+                        <input type="text" id="inputEmail" ng-model="currentUser.email" placeholder="Email">
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="first_name">First Name</label>
+
+                    <div class="controls">
+                        <input type="text" id="first_name" ng-model="currentUser.first_name">
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="last_name">Last Name</label>
+
+                    <div class="controls">
+                        <input type="text" id="last_name" ng-model="currentUser.last_name">
+                    </div>
+                </div>
+
+                <h3>Wordpress info</h3>
+                <div class="control-group">
+                    <label class="control-label" for="url">url</label>
+                    <div class="controls">
+                        <input type="text" id="url" ng-model="userProfile.wp_url">
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="username">username</label>
+                    <div class="controls">
+                        <input type="text" id="username" ng-model="userProfile.wp_username">
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="password">password</label>
+                    <div class="controls">
+                        <input type="text" id="password" ng-model="userProfile.wp_password">
+                    </div>
+                </div>
+
+                <h3>Gmail info</h3>
+                <div class="control-group">
+                    <label class="control-label" for="username">username</label>
+                    <div class="controls">
+                        <input type="text" id="username" ng-model="userProfile.gmail_username">
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="password">password</label>
+                    <div class="controls">
+                        <input type="text" id="password" ng-model="userProfile.gmail_password">
+                    </div>
+                </div>
+                <div class="control-group">
+                    <div class="controls">
+                        <button type="submit" ng-click="submitUserProfile()" class="btn btn-primary">Save</button>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+
+    </div>
+</div>
+

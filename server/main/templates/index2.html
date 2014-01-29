@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset='utf-8'>
+    <title>Yamzam</title>
+    <link rel='stylesheet' href='//cdnjs.cloudfare.com/ajax/libs/twitter-boostrap/3.0.3/css/bootstrap.min.css'>
+</head>
+<body>
+    <div class="container">
+        <hr/>
+        <div class="page"></div>
+    </div>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/backbone.js/1.1.0/backbone-min.js"></script>
+
+    <script>
+    var Router = Backbone.Router.extend({
+        routes: {
+            '': 'home'
+        }
+    });
+
+    var router = new Router();
+    router.on('route:home', function() {
+        console.log('we have looked at the home page');
+    });
+    </script>
+</body>
+</html>
