@@ -20,6 +20,7 @@ yamzamApp.config(['$routeProvider',
         $routeProvider.
             when('/', {templateUrl: '/partials/front.html', controller: 'yamzamCtrl'}).
             when('/profile', {templateUrl: '/partials/profile.html', controller: 'yamzamCtrl'}).
+            when('/manage', {templateUrl: '/partials/manage.html', controller: 'yamzamCtrl'}).
             otherwise({redirectTo: '/'});
     }
 ]);

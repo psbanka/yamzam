@@ -3,16 +3,27 @@
   <div class="container">
     <h1>Yamzam</h1>
     <p>Get your information out there</p>
-    <p>
-      <a href="assets/bootstrap.zip" class="btn btn-primary btn-large">Get started now</a>
-    </p>
-    <ul class="masthead-links">
-      <li>
-        <a href="/how-it-works" class="lead">How does it work?</a>
-      </li>
-      <li>
-        <a href="./contact" class="lead">Contact us</a>
-      </li>
-    </ul>
+    <div class="panel panel-default" ng-show="!currentUser.is_active">
+      <div class="panel-body">
+          <form role="form" action="/login/" method="post" accept-charset="UTF-8">
+            <div class="form-group">
+              <label for="inputUsername">Username</label>
+              <input type="email" class="form-control" id="inputUsername" placeholder="MaryB">
+            </div>
+            <div class="form-group">
+              <label for="inputPassword">Password</label>
+              <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+            </div>
+            <button type="submit" class="btn btn-default">Submit</button>
+          </form>
+      </div>
+    </div>
+    <div class="panel panel-default" ng-show="currentUser.is_active">
+        <ul>
+          <li> <a href="/#/profile">Profile</a> </li>
+          <li> <a href="/#/manage">Manage</a> </li>
+          <li> <a href="/logout">Sign off</a> </li>
+        </ul>
+    </div>
   </div>
 </div>

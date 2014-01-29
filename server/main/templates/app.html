@@ -6,9 +6,13 @@
 <html lang="en" ng-app="yamzam">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
-    <link href="{% static 'css/bootstrap-responsive.css' %}" rel="stylesheet">
-    <link href="{% static 'css/docs.css' %}" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/css/bootstrap.min.css">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/css/bootstrap-theme.min.css">
+
     <title>{% block title %}{% endblock %}</title>
 </head>
 
@@ -16,9 +20,6 @@
 <script type="text/javascript"
   src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js">
 </script>
-<!--
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.1.3/angular.js"></script>
--->
 <script type="text/javascript"
   src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.10/angular.js">
 </script>
@@ -33,6 +34,7 @@
 </script>
 
 <script type="text/javascript" src="{% static 'lib/angular-strap.js' %}"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="{% static 'lib/bootstrap-dropdown.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/app.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/controllers.js' %}"></script>
@@ -55,57 +57,39 @@
 <!-- Navbar
 ================================================== -->
 
-<div class="navbar navbar-inverse navbar-fixed-top" bs-navbar>
-    <div class="navbar-inner">
-        <div class="container">
-            <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <div class="nav-collapse collapse">
-                <ul class="nav pull-right">
-                    <li ng-show="currentUser.authenticated === true" data-match-route="^/profile$">
-                        <a href="/#/profile">Profile</a>
-                    </li>
-                    <li ng-show="currentUser.authenticated === true" data-match-route="^/gallery$">
-                        <a href="/#/gallery">Gallery</a>
-                    </li>
-                    <li ng-show="currentUser.authenticated === true" data-match-route="^/study$">
-                        <a href="/#/study">Study</a>
-                    </li>
-                    <li ng-show="currentUser.authenticated === false">
-                        <a href="/#/sign_up">Sign Up</a>
-                    </li>
-                    <li class="divider-vertical"></li>
-                    <li ng-show="currentUser.authenticated === true">
-                        <a href="/logout">Sign off</a>
-                    </li>
-                    <li ng-show="currentUser.authenticated === false" class="dropdown">
-                        <a class="dropdown-toggle" href="#" data-toggle="dropdown">Sign In <strong
-                                class="caret"></strong></a>
+<nav class="navbar navbar-default" role="navigation">
+  <!-- Brand and toggle get grouped for better mobile display -->
+  <div class="navbar-header navbar-inverse">
+    <button type="button" class="navbar-toggle navbar-inverse" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="#">Yamzam</a>
+  </div>
 
-                        <div class="dropdown-menu" style="padding: 15px; padding-bottom: 0px;">
-                            <form action="/login/" method="post" accept-charset="UTF-8">
-                                {% csrf_token %}
-                                <input name="username" style="margin-bottom: 15px;" type="text" placeholder="username"
-                                       size="30"/>
-                                <input name="password" style="margin-bottom: 15px;" type="password"
-                                       placeholder="password" size="30"/>
-                                <input name="remember_me" style="float: left; margin-right: 10px;" type="checkbox"
-                                       value="1"/>
-                                <label class="string optional" for="remember_me"> Remember me</label>
-                                <input class="btn btn-primary"
-                                       style="clear: left; width: 100%; height: 32px; font-size: 13px;" type="submit"
-                                       value="Sign In"/>
-                            </form>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</div>
+  <!-- Collect the nav links, forms, and other content for toggling -->
+  <div class="collapse navbar-collapse navbar-inverse" id="bs-example-navbar-collapse-1">
+    <ul class="nav navbar-nav navbar-inverse">
+      <li class="active navbar-inverse"><a href="#">Home</a></li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right navbar-inverse">
+      <li ng-show="currentUser.is_active === true" data-match-route="^/profile$">
+          <a href="/#/profile">Profile</a>
+      </li>
+      <li ng-show="currentUser.is_active === true" data-match-route="^/manage$">
+          <a href="/#/manage">Manage</a>
+      </li>
+      <li ng-show="currentUser.is_active === true">
+          <a href="/logout">Sign off</a>
+      </li>
+      <li ng-show="currentUser.is_active !== true">
+          <a href="/login">Sign in</a>
+      </li>
+    </ul>
+  </div><!-- /.navbar-collapse -->
+</nav>
 
 <div ng-view></div>
 
