@@ -21,12 +21,14 @@ yamzamApp.config(['$routeProvider',
             when('/', {templateUrl: '/partials/front.html', controller: 'yamzamCtrl'}).
             when('/profile', {templateUrl: '/partials/profile.html', controller: 'yamzamCtrl'}).
             when('/manage', {templateUrl: '/partials/manage.html', controller: 'yamzamCtrl'}).
+            when('/import/:emailId', {templateUrl: '/partials/import.html', controller: 'yamzamCtrl'}).
             otherwise({redirectTo: '/'});
     }
 ]);
 
-yamzamApp.run( function run( $http, $cookies ){
+yamzamApp.run( function run( $http, $cookies, $rootScope ){
     // For CSRF token compatibility with Django
     $http.defaults.headers.post['X-CSRFToken'] = $cookies['csrftoken'];
     $http.defaults.headers.put['X-CSRFToken'] = $cookies['csrftoken'];
+    $rootScope.$broadcast('event:initial-auth');
 })

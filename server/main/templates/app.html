@@ -18,78 +18,53 @@
 
 <body>
 <script type="text/javascript"
-  src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js">
+  src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js">
 </script>
 <script type="text/javascript"
-  src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.10/angular.js">
+  src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.10/angular.js">
 </script>
 <script type="text/javascript"
-  src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.10/angular-resource.js">
+  src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.10/angular-resource.js">
 </script>
 <script type="text/javascript"
-  src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.10/angular-route.js">
+  src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.10/angular-route.js">
 </script>
 <script type="text/javascript"
-  src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.10/angular-cookies.js">
+  src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.10/angular-cookies.js">
+</script>
+<script type="text/javascript"
+  src="//cdnjs.cloudflare.com/ajax/libs/angular-strap/0.7.5/angular-strap.min.js">
 </script>
 
 <script type="text/javascript" src="{% static 'lib/angular-strap.js' %}"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="{% static 'lib/bootstrap-dropdown.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/app.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/controllers.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/directives.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/services.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/filters.js' %}"></script>
 
-<script type="text/javascript">
-    $(function () {
-        // Setup drop down menu
-        $('.dropdown-toggle').dropdown();
-
-        // Fix input element click problem
-        $('.dropdown input, .dropdown label').click(function (e) {
-            e.stopPropagation();
-        });
-    });
-</script>
-
 <!-- Navbar
 ================================================== -->
 
-<nav class="navbar navbar-default" role="navigation">
-  <!-- Brand and toggle get grouped for better mobile display -->
-  <div class="navbar-header navbar-inverse">
-    <button type="button" class="navbar-toggle navbar-inverse" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-      <span class="sr-only">Toggle navigation</span>
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-    </button>
+<div class="navbar navbar-default navbar-inverse" role="navigation" bs-navbar>
+  <div class="navbar-header">
     <a class="navbar-brand" href="#">Yamzam</a>
   </div>
-
-  <!-- Collect the nav links, forms, and other content for toggling -->
-  <div class="collapse navbar-collapse navbar-inverse" id="bs-example-navbar-collapse-1">
-    <ul class="nav navbar-nav navbar-inverse">
-      <li class="active navbar-inverse"><a href="#">Home</a></li>
-    </ul>
-    <ul class="nav navbar-nav navbar-right navbar-inverse">
-      <li ng-show="currentUser.is_active === true" data-match-route="^/profile$">
-          <a href="/#/profile">Profile</a>
-      </li>
-      <li ng-show="currentUser.is_active === true" data-match-route="^/manage$">
-          <a href="/#/manage">Manage</a>
-      </li>
-      <li ng-show="currentUser.is_active === true">
-          <a href="/logout">Sign off</a>
-      </li>
-      <li ng-show="currentUser.is_active !== true">
-          <a href="/login">Sign in</a>
-      </li>
-    </ul>
-  </div><!-- /.navbar-collapse -->
-</nav>
+  <ul class="nav navbar-nav">
+    <li data-match-route="/?(navbar)?"><a href="#/">Home</a></li>
+    <li data-match-route="/profile"><a href="#/profile">Profile</a></li>
+    <li data-match-route="/manage"><a href="#/manage">Manage</a></li>
+  </ul>
+  <ul class="nav navbar-nav navbar-right">
+    <li ng-show="currentUser.is_active === true">
+        <a href="/logout">Sign off</a>
+    </li>
+    <li ng-show="currentUser.is_active !== true">
+        <a href="/login">Sign in</a>
+    </li>
+  </ul>
+</div>
 
 <div ng-view></div>
 

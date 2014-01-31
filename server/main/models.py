@@ -18,6 +18,7 @@ class UserProfile(models.Model):
     wp_password = models.CharField(max_length=100, blank=True, null=True)
     gmail_username = models.CharField(max_length=50, blank=True, null=True)
     gmail_password = models.CharField(max_length=100, blank=True, null=True)
+    gmail_source = models.CharField(max_length=50, blank=True, null=True)
 
     def __unicode__(self):
         return "%s's profile" % self.user

@@ -1,0 +1,35 @@
+<div class="container">
+    <div class="row">
+        <div class="well span10">
+            <div class="page-header">
+                <H1>Import emails
+                    <small>for {[{ selectedEmail.subject }]}</small>
+                </H1>
+            </div>
+        </div>
+        <div class="span10">
+        <table class="table table-striped table-hover">
+            <tbody>
+                 <tr>
+                   <th scope="col" title="Title">Title</th>
+                   <th scope="col" title="Length">Size</th>
+                   <th scope="col" title="Import?">Import</th>
+                   <th scope="col" title="Imported?">Imported</th>
+                 </tr>
+                 <tr ng-repeat="article in articles | filter:imported">
+                     <td>{[{article.title}]}</td>
+                     <td>{[{article.length}]}</td>
+                     <td><input type="checkbox" ng-model="article.import"></td>
+                     <td><input type="checkbox" ng-model="article.imported"></td>
+                 </tr>
+             </tbody>
+        <table>
+        <div class="control-group">
+            <div class="controls col-sm-10">
+                <button type="submit" ng-click="importArticles()" class="btn btn-primary">Import</button>
+            </div>
+        </div>
+    </fieldset>
+    </div>
+</div>
+
