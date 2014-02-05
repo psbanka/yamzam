@@ -21,6 +21,14 @@ class JSONResponse(HttpResponse):
         super(JSONResponse, self).__init__(content, **kwargs)
 
 
+class EmailSummaryViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows EmailSummaries to be viewed or edited.
+    """
+    queryset = models.EmailSummary.objects.all()
+    serializer_class = serializers.EmailSummarySerializer
+
+
 class UserViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows users to be viewed or edited.

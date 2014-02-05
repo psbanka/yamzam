@@ -4,6 +4,7 @@ from main import views
 from django.contrib.auth.views import login
 from main import serializer_views
 from django.contrib import admin
+from ImportEmail import ImportEmail
 admin.autodiscover()
 
 
@@ -11,6 +12,7 @@ admin.autodiscover()
 router = routers.DefaultRouter(trailing_slash=False)
 router.register(r'users', serializer_views.UserViewSet)
 router.register(r'userprofiles', serializer_views.UserProfileViewSet)
+router.register(r'emails', serializer_views.EmailSummaryViewSet)
 
 
 # Wire up our API using automatic URL routing.
@@ -23,9 +25,11 @@ urlpatterns = patterns(
     url(r'^partials/(?P<template_name>.*)', views.partial_helper),
 
     # HOOKS INTO DJANGORESTFRAMEWORK ###########
+    url(r'^import_email$', ImportEmail.as_view()),
     url(r'^', include(router.urls)),
     url(r'^api-auth/', include(
         'rest_framework.urls', namespace='rest_framework')),
+    #url(r'^snippets/(?P<pk>[0-9]+)/$', views.SnippetDetail.as_view()),
 
     # DJANGO ADMINISTRATION ####################
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),

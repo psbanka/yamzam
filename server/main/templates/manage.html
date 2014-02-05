@@ -24,8 +24,13 @@
                  </tr>
              </tbody>
         <table>
+        <div class="control-group">
+            <div class="controls col-sm-10">
+                <button ng-click="importEmail()" class="btn btn-primary">Import email</button>
+            </div>
+        </div>
         <div class="span10" ng-show="selectedEmail">
-            <h1>Selected {[{selectedEmail}]}</h1>
+            <h1>Selected {[{importMessage}]}</h1>
         </div>
     </div>
 </div>

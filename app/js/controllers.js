@@ -9,19 +9,15 @@ yamzamControllers.controller('yamzamCtrl', [
     '$routeParams',
     'User',
     'UserProfile',
-    function($scope, $rootScope, $location, $routeParams, User, UserProfile) {
+    'Emails',
+    '$http',
+    function($scope, $rootScope, $location, $routeParams, User, UserProfile, Emails, $http) {
         $rootScope.userId = 1;
         $rootScope.currentUser = User.query($rootScope.userId);
         $rootScope.userProfile = UserProfile.query($rootScope.userId);
+        $rootScope.emails = Emails.query();;
+        $rootScope.importMessage = '';
 
-        $rootScope.emails = [
-            {'index': 1, 'subject': 'foo', 'date': '12/22/12', 'imported': true},
-            {'index': 2, 'subject': 'bar', 'date': '12/22/13', 'imported': true},
-            {'index': 3, 'subject': 'baz', 'date': '12/30/12', 'imported': true},
-            {'index': 4, 'subject': 'waldo', 'date': '1/22/13', 'imported': false},
-            {'index': 5, 'subject': 'flax', 'date': '2/2/12', 'imported': false},
-            {'index': 6, 'subject': 'falx', 'date': '12/02/02', 'imported': false},
-        ];
 
         $rootScope.articles = [
             {'title': "January 6th", "length": 223, "import": false, "imported": false},
@@ -30,6 +26,20 @@ yamzamControllers.controller('yamzamCtrl', [
             {'title': "Our next speaker", "length": 523, "import": false, "imported": false},
             {'title': "Eat a hot dog", "length": 323, "import": false, "imported": true},
         ];
+
+        $rootScope.importEmail = function() {
+            $http({method: 'GET', url: '/import_email'}).
+                success(function(data, status, headers, config) {
+                    $rootScope.importMessage = data.response;
+                }).
+                error(function(data, status, headers, config) {
+                    if (data.response) {
+                        $rootScope.importMessage = data.response;
+                    } else {
+                        $rootScope.importMessage = "Error importing email";
+                    }
+                });
+        };
 
         $rootScope.submitUserProfile = function() {
             $rootScope.currentUser.$save();

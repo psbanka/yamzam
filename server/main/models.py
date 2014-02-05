@@ -6,6 +6,22 @@ import logging
 logger = logging.getLogger(__name__)
 
 
+class EmailSummary(models.Model):
+    """
+    Keeps track of email imported from gmail
+    credentials for logging into other cloud services.
+    """
+    user = models.ForeignKey(User, unique=False)
+    message_id = models.BigIntegerField(blank=False, null=False)
+    subject = models.CharField(max_length=150, blank=True, null=True)
+    source_addr = models.CharField(max_length=150, blank=True, null=True)
+    date = models.DateTimeField(blank=False, null=False)
+    imported_to_wordpress = models.BooleanField(null=False)
+
+    def __unicode__(self):
+        return "%s/%s" % (self.id, self.source_addr)
+
+
 class UserProfile(models.Model):
     """
     Keeps track of extra information about the user, specifically

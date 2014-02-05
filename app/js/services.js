@@ -23,3 +23,19 @@ yamzamServices.factory('UserProfile', ['$resource',
         });
     }
 ]);
+
+yamzamServices.factory('Emails', ['$resource',
+    function($resource){
+        return $resource('emails/:emailid', {}, {
+            query: {
+                method:'GET',
+                params:{},
+                isArray:true,
+                transformResponse: function(data_string, headers){
+                    var data = JSON.parse(data_string);
+                    return data.results;
+                }
+            },
+        });
+    }
+]);
